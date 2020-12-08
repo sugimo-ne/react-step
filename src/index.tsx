@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -101,7 +102,6 @@ function Game() {
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
-
   return (
     <div className="game">
       <div className="game-board">
