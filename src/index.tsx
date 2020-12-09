@@ -3,47 +3,51 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 
-function Square(props) {
+type SquareProps = {
+  value: string,
+  onClick: ()=> void
+}
+type BoardProps = {
+  squares:string[],
+  onClick:(i:number)=> void
+}
+
+
+const Square: React.FunctionComponent<SquareProps> = ({value , onClick}) => {
   return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
+    <button className="square" onClick={onClick}>
+      {value}
     </button>
   );
 }
 
-class Board extends React.Component {
-  renderSquare(i) {
-    return (
+const Board: React.FunctionComponent<BoardProps> = ({onClick , squares}) =>{
+  const renderSquare = (i:number) => (
       <Square
-        onClick={() => {
-          this.props.onClick(i);
-        }}
-        value={this.props.squares[i]}
+        onClick={() => onClick(i)}
+        value={squares[i]}
       />
-    );
-  }
-  render() {
+  )
     return (
       <div>
         <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
+          {renderSquare(0)}
+          {renderSquare(1)}
+          {renderSquare(2)}
         </div>
         <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
+          {renderSquare(3)}
+          {renderSquare(4)}
+          {renderSquare(5)}
         </div>
         <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+          {renderSquare(6)}
+          {renderSquare(7)}
+          {renderSquare(8)}
         </div>
       </div>
     );
-  }
-}
+    }
 
 function Game() {
   const [history, setHistory] = useState([
@@ -54,7 +58,7 @@ function Game() {
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
 
-  const handleClick = (i) => {
+  const handleClick = (i:number) => {
     const _history = history.slice(0, stepNumber + 1);
     const current = _history[_history.length - 1];
     const squares = current.squares.slice();
@@ -73,7 +77,7 @@ function Game() {
     setXIsNext(!xIsNext);
   };
 
-  const jumpTo = (step) => {
+  const jumpTo = (step:number) => {
     setStepNumber(step);
     setXIsNext(step % 2 === 0);
   };
@@ -107,7 +111,7 @@ function Game() {
       <div className="game-board">
         <Board
           squares={current.squares}
-          onClick={(i) => {
+          onClick={(i:number) => {
             handleClick(i);
           }}
         />
@@ -120,7 +124,7 @@ function Game() {
   );
 }
 
-function calculateWinner(squares) {
+function calculateWinner(squares:number[]) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
