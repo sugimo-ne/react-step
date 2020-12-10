@@ -11,8 +11,8 @@ const Game = () => {
         squares: Array(9).fill(null),
       },
     ]);
-    const [stepNumber, setStepNumber] = useState(0);
-    const [xIsNext, setXIsNext] = useState(true);
+    const [stepNumber, setStepNumber] = useState<number>(0);
+    const [xIsNext, setXIsNext] = useState<Boolean>(true);
   
     const handleClick = (i:number) => {
       const _history = history.slice(0, stepNumber + 1);
@@ -24,7 +24,7 @@ const Game = () => {
       }
       squares[i] = xIsNext ? "X" : "O";
       setHistory([
-        ...history,
+        ..._history,
         {
           squares: squares,
         },
@@ -41,7 +41,6 @@ const Game = () => {
     const winner = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
       //配列のindexが0falsyかどうかで分岐
-      console.log(move);
       const desc = move ? "Go to move #" + move : "Go to game start";
       return (
         <li key={move}>
