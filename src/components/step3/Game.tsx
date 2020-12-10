@@ -24,7 +24,7 @@ const Game = () => {
       }
       squares[i] = xIsNext ? "X" : "O";
       setHistory([
-        ...history,
+        ..._history,
         {
           squares: squares,
         },
@@ -41,7 +41,6 @@ const Game = () => {
     const winner = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
       //配列のindexが0falsyかどうかで分岐
-      console.log(move);
       const desc = move ? "Go to move #" + move : "Go to game start";
       return (
         <li key={move}>
