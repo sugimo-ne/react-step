@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Square from "./Square"
 
 type BoardProps = {
-    squares:string[],
+    squares:string[] | null[],
     onClick:(i:number)=> void
   }
   

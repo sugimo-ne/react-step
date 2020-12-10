@@ -2,8 +2,11 @@
 import React , {useState} from  "react"
 import Board from  "./Board"
 
+type Squares = string[]|null[]
+type History = {squares:Squares}[]
+
 const Game = () => {
-    const [history, setHistory] = useState([
+    const [history, setHistory] = useState<History>([
       {
         squares: Array(9).fill(null),
       },
@@ -77,7 +80,7 @@ const Game = () => {
     );
   }
 
-  function calculateWinner(squares:number[]) {
+  function calculateWinner(squares:Squares) {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
