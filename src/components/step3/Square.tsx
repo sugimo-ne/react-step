@@ -1,7 +1,7 @@
 import React from "react"
 
 type SquareProps = {
-    value: string,
+    value: string|null,
     onClick: ()=> void
   }
 
