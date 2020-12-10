@@ -11,8 +11,8 @@ const Game = () => {
         squares: Array(9).fill(null),
       },
     ]);
-    const [stepNumber, setStepNumber] = useState(0);
-    const [xIsNext, setXIsNext] = useState(true);
+    const [stepNumber, setStepNumber] = useState<number>(0);
+    const [xIsNext, setXIsNext] = useState<Boolean>(true);
   
     const handleClick = (i:number) => {
       const _history = history.slice(0, stepNumber + 1);
